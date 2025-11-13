@@ -3,9 +3,7 @@ const query = window.location.search; // пример: "?123456"
 const N = parseInt(query.substring(1), 10);
 
 if (!isNaN(N) && N >= 2) {
-    document.title = ``;
-
-    // Функция для проверки простого числа
+    // Считаем простые числа от 2 до N
     function isPrime(num) {
         if (num < 2) return false;
         for (let i = 2; i * i <= num; i++) {
@@ -14,15 +12,15 @@ if (!isNaN(N) && N >= 2) {
         return true;
     }
 
-    // Считаем простые числа
     let count = 0;
     for (let i = 2; i <= N; i++) {
         if (isPrime(i)) count++;
     }
 
-    // Отображаем результат
-    document.getElementById('result').textContent = `${count}`;
+    // Выводим результат только в заголовок окна (title)
+    document.title = count;
+
 } else {
-    document.getElementById('result').textContent = "Введите число >= 2 в URL после '?'.";
-    document.title = "Ошибка ввода";
+    // Если число не указано или меньше 2
+    document.title = "Введите число >=2 после '?' в URL";
 }
